@@ -1,20 +1,9 @@
-// Auto-redirect based on referrer/query params
-function initRouter() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const segment = urlParams.get('segment') || localStorage.getItem('valeri_segment');
-  
-  if (segment === 'modern') {
-    setTimeout(() => window.location.href = 'landing1/', 500);
-  } else if (segment === 'traditional') {
-    setTimeout(() => window.location.href = 'landing2/', 500);
-  }
-}
-
-// Age selector
+// NO AUTO-REDIRECT - Always show main selector first
+// Age selector buttons only
 function selectAge(pageNum) {
   const segment = pageNum === 1 ? 'modern' : 'traditional';
   
-  // Track selection
+  // Track choice
   if (typeof gtag !== 'undefined') {
     gtag('event', 'segment_select', {
       event_category: 'ab_test',
@@ -23,20 +12,21 @@ function selectAge(pageNum) {
     });
   }
   
-  // Store preference
+  // Store for analytics (but NO auto-redirect)
   localStorage.setItem('valeri_segment', segment);
   
-  // Smooth redirect
-  const targetUrl = segment === 'modern' ? 'landing1/' : 'landing2/';
-  document.querySelector(`[data-segment="${segment}"]`).click();
+  // Manual redirect ONLY on button click
+  const targetUrl = segment === 'modern' ? 'modern-professional/' : 'established-homeowner/';
+  window.location.href = targetUrl;
 }
 
-// Card click tracking
+// Card click tracking - Manual only
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', (e) => {
+    e.preventDefault(); // Prevent any default
+    
     const segment = card.dataset.segment;
     
-    // GA4 event
     if (typeof gtag !== 'undefined') {
       gtag('event', 'landing_choose', {
         event_category: 'ab_test',
@@ -45,27 +35,28 @@ document.querySelectorAll('.card').forEach(card => {
       });
     }
     
-    // Store & redirect
+    // Store preference + redirect
     localStorage.setItem('valeri_segment', segment);
-    setTimeout(() => {
-      if (!window.location.pathname.includes(segment)) {
-        window.location.href = segment + '/';
-      }
-    }, 100);
+    const targetPath = segment === 'modern' ? 'modern-professional/' : 'established-homeowner/';
+    window.location.href = targetPath;
   });
 });
 
-// Button animations
+// Button hover animations only
 document.querySelectorAll('.btn-age').forEach(btn => {
   btn.addEventListener('mouseenter', () => btn.style.transform = 'scale(1.05)');
   btn.addEventListener('mouseleave', () => btn.style.transform = 'scale(1)');
 });
 
-// Load router on DOM ready
-document.addEventListener('DOMContentLoaded', initRouter);
-
-// PWA-ish: Add to home screen prompt (optional)
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  deferredPrompt = e;
+// Smooth scroll for anchor links only (no segment logic)
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 });
+
+// NO initRouter() - Never auto-redirects!
