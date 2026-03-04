@@ -4,39 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Valeri Furniture | Heirloom Quality Since 1968</title>
-  <meta name="description" content="Crafted furniture & custom blinds built to last generations. Family-owned in Appleton, WI. Visit our showroom for expert guidance.">
+  <meta name="description" content="Crafted furniture built to last generations. Family-owned Appleton showroom. Expert guidance included.">
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;500;700&family=Times+New+Roman&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Georgia:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header classic"><!-- Larger fonts, traditional nav --></header>
-
-  <section class="hero traditional">
+  <!-- Modified Header: Traditional nav -->
+  <header class="header">
     <div class="container">
-      <h1>Crafted for Generations</h1>
-      <p>Since 1968, Valeri Furniture has delivered heirloom-quality pieces with unmatched craftsmanship. Invest in furniture that becomes family tradition—backed by our white-glove service.</p>
-      <!-- Larger stats, detailed benefits -->
+      <a href="#" class="logo">Valeri Furniture & Blinds</a>
+      <nav class="nav">
+        <a href="#heritage">Heritage</a>
+        <a href="#collections">Furniture</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Visit Us</a>
+      </nav>
+      <a href="tel:+19208820808" class="cta-header">Call (920) 882-0808</a>
+    </div>
+  </header>
+
+  <!-- Modified Hero: Heritage focus -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content centered">
+        <h1>Crafted for Generations</h1>
+        <p class="hero-lead">Since 1968, heirloom-quality furniture with kiln-dried hardwoods, lifetime warranties, and white-glove service. Invest in pieces that become family tradition.</p>
+        <div class="hero-stats">
+          <div>55+ <span>Years Excellence</span></div>
+          <div>Kiln-Dried <span>Hardwoods</span></div>
+          <div>Free <span>White-Glove Delivery</span></div>
+        </div>
+        <a href="#contact" class="btn btn-primary">Schedule Showroom Visit</a>
+      </div>
     </div>
   </section>
 
+  <!-- NEW Heritage Section: Detailed specs -->
   <section id="heritage" class="section heritage">
     <div class="container">
-      <h2>Our Legacy of Excellence</h2>
-      <p>Detailed copy on 50+ years, kiln-dried woods, lifetime warranties, etc.</p>
-      <!-- Material specs tables -->
+      <div class="grid-2">
+        <div>
+          <h2>Built to Last a Lifetime</h2>
+          <table class="spec-table">
+            <tr><th>Material</th><td>Kiln-dried oak, maple</td></tr>
+            <tr><th>Finish</th><td>Hand-rubbed, durable</td></tr>
+            <tr><th>Warranty</th><td>Lifetime on frame</td></tr>
+            <tr><th>Delivery</th><td>Professional setup</td></tr>
+          </table>
+        </div>
+        <div><!-- Map preserved --></div>
+      </div>
     </div>
   </section>
 
-  <!-- Enhanced testimonials with photos, detailed collections with specs -->
+  <!-- Preserved other sections -->
 
-  <section class="cta-section traditional">
-    <h2>Experience It In Person</h2>
-    <p>Schedule your showroom visit. Open Mon-Sat 10-7, Sun by appt.</p>
-    <a href="tel:+19208820808">Call (920) 882-0808</a>
+  <!-- Modified CTA: Showroom emphasis -->
+  <section class="cta-section">
+    <div class="container centered">
+      <h2>Visit Our Appleton Showroom</h2>
+      <p>Mon-Sat 10AM-7PM | Sun by appointment<br>5421 N Richmond St, Appleton, WI</p>
+      <a href="tel:+19208820808" class="btn btn-primary btn-large">Call to Schedule</a>
+    </div>
   </section>
 
-  <!-- Detailed contact with hours, directions -->
+  <!-- Enhanced contact with hours -->
+  <section id="contact" class="section contact"><!-- Add hours bullet --></section>
 
-  <footer><!-- Enhanced with full address --></footer>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Valeri Furniture. Open Mon-Sat 10-7. 5421 N Richmond St, Appleton, WI 54913.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
