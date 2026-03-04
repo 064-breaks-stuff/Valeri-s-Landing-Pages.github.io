@@ -4,9 +4,9 @@ function initRouter() {
   const segment = urlParams.get('segment') || localStorage.getItem('valeri_segment');
   
   if (segment === 'modern') {
-    setTimeout(() => window.location.href = 'modern-professional/', 500);
+    setTimeout(() => window.location.href = 'landing1/', 500);
   } else if (segment === 'traditional') {
-    setTimeout(() => window.location.href = 'established-homeowner/', 500);
+    setTimeout(() => window.location.href = 'landing2/', 500);
   }
 }
 
@@ -27,7 +27,7 @@ function selectAge(pageNum) {
   localStorage.setItem('valeri_segment', segment);
   
   // Smooth redirect
-  const targetUrl = segment === 'modern' ? 'modern-professional/' : 'established-homeowner/';
+  const targetUrl = segment === 'modern' ? 'landing1/' : 'landing2/';
   document.querySelector(`[data-segment="${segment}"]`).click();
 }
 
