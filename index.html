@@ -1,14 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valeri Furniture | Choose Your Style</title>
+  <meta name="description" content="Premium furniture & blinds in Appleton, WI. Select your experience: Modern Professional or Established Homeowner.">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to Main Page</h1>
-    <p>Links to landing pages:</p>
-    <a href="landing1/index.html">Landing Page 1</a><br>
-    <a href="landing2/index.html">Landing Page 2</a>
+  <!-- Header -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="logo-section">
+        <h1 class="logo">Valeri Furniture</h1>
+        <p class="tagline">Appleton, WI | Since 1968</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="main">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <h2>Which best describes you?</h2>
+          <p>Choose your personalized experience for the perfect furniture match.</p>
+        </div>
+        
+        <!-- Preview Cards -->
+        <div class="cards-grid">
+          <!-- LP1 Card -->
+          <a href="modern-professional/" class="card modern" data-segment="modern">
+            <div class="card-visual">
+              <div class="visual-placeholder modern-viz"></div>
+            </div>
+            <div class="card-content">
+              <h3>Modern Professional</h3>
+              <p class="age-range">Ages 25-45</p>
+              <ul class="features">
+                <li>🌿 Sustainable designs</li>
+                <li>⚡ Home office focus</li>
+                <li>📱 Quick virtual consults</li>
+              </ul>
+              <span class="cta">Start Experience →</span>
+            </div>
+          </a>
+
+          <!-- LP2 Card -->
+          <a href="established-homeowner/" class="card traditional" data-segment="traditional">
+            <div class="card-visual">
+              <div class="visual-placeholder traditional-viz"></div>
+            </div>
+            <div class="card-content">
+              <h3>Established Homeowner</h3>
+              <p class="age-range">Ages 45+</p>
+              <ul class="features">
+                <li>🏛️ Heirloom craftsmanship</li>
+                <li>📏 Detailed specifications</li>
+                <li>👥 White-glove service</li>
+              </ul>
+              <span class="cta">Explore Collection →</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Quick age selector (backup) -->
+        <div class="age-selector">
+          <p>Or tell us your age range:</p>
+          <div class="selector-buttons">
+            <button onclick="selectAge(1)" class="btn-age modern">25-45</button>
+            <button onclick="selectAge(2)" class="btn-age traditional">45+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats & Trust -->
+    <section class="stats">
+      <div class="container">
+        <div class="stat-grid">
+          <div class="stat">
+            <span class="stat-number">55+</span>
+            <span>Years Family-Owned</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">5421 N Richmond St</span>
+            <span>Appleton Showroom</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">(920) 882-0808</span>
+            <span>Call Anytime</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Valeri Furniture & Blinds | A/B Test Environment</p>
+      <p>Mon-Sat 10AM-7PM | <a href="tel:+19208820808">Call Now</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
