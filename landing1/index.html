@@ -9,87 +9,98 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Modified Header: Simplified nav for quick scanning -->
   <header class="header">
     <div class="container">
-      <a href="#" class="logo">Valeri</a>
-      <nav class="nav"><a href="#lifestyle">Lifestyle</a><a href="#collections">Shop</a><a href="#brands">Brands</a></nav>
-      <a href="#book" class="cta-header">Book Consult</a>
+      <a href="#" class="logo">Valeri Modern</a>
+      <nav class="nav">
+        <a href="#lifestyle">Lifestyle</a>
+        <a href="#collections">Shop</a>
+        <a href="#brands">Brands</a>
+      </nav>
+      <a href="#book" class="cta-header">Book (2 min)</a>
     </div>
   </header>
 
+  <!-- Modified Hero: Aesthetic + eco focus -->
   <section class="hero">
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <h1>Design Your<br>Aesthetic Life</h1>
-          <p>Elevate your space with sustainable, name-brand pieces that match your modern lifestyle. Thoughtfully curated for professionals who value style, function, and the planet.</p>
-          <div class="hero-features">
-            <div>🌿 Eco-Materials</div>
-            <div>⚡ Fast Delivery</div>
-            <div>📱 Virtual Consults</div>
-          </div>
-          <a href="#book" class="btn btn-primary">Start Your Design (2 min)</a>
+      <div class="hero-content">
+        <h1>Design Your<br>Aesthetic Life</h1>
+        <p class="hero-lead">Sustainable name-brand pieces for your modern lifestyle. Curated for professionals who prioritize style, function, and the planet. Family-owned excellence since 1968.</p>
+        <div class="hero-stats">
+          <div>🌿 <span>Eco-Materials</span></div>
+          <div>⚡ <span>Fast Delivery</span></div>
+          <div>📱 <span>Virtual Consults</span></div>
         </div>
-        <div class="hero-visual">
-          <div class="placeholder hero-img">Modern home office aesthetic</div>
-        </div>
+        <a href="#book" class="btn btn-primary">Start Your Design</a>
+        <p class="hero-offer"><strong>Now:</strong> Up to 50% Off + Free Eco-Protection</p>
+      </div>
+      <div class="hero-image">
+        <div class="placeholder hero-placeholder">Modern home office aesthetic</div>
       </div>
     </div>
   </section>
 
-  <section id="lifestyle" class="section lifestyle">
+  <!-- NEW Lifestyle Section: Work/life balance appeal -->
+  <section id="lifestyle" class="section lifestyle modern">
     <div class="container">
       <h2>Your Space, Elevated</h2>
-      <p class="subtitle">From Instagram-worthy living rooms to productive home offices—pieces that inspire your best life.</p>
-      <div class="lifestyle-grid">
-        <div class="lifestyle-card">
-          <div class="icon">🏠</div>
-          <h3>Home Office</h3>
-          <p>Ergonomic desks & chairs in sustainable woods for peak productivity.</p>
+      <p class="section-subtitle">From productive home offices to effortless entertaining.</p>
+      <div class="grid-3">
+        <div class="collection-card">
+          <div class="card-image placeholder"></div>
+          <h3>🏠 Home Office</h3>
+          <p>Ergonomic, sustainable desks for peak productivity.</p>
         </div>
-        <div class="lifestyle-card">
-          <div class="icon">🛋️</div>
-          <h3>Entertaining</h3>
-          <p>Modular sectionals perfect for gatherings that feel effortless.</p>
+        <div class="collection-card">
+          <div class="card-image placeholder"></div>
+          <h3>🛋️ Entertaining</h3>
+          <p>Modular sectionals for modern gatherings.</p>
         </div>
-        <div class="lifestyle-card">
-          <div class="icon">🛏️</div>
-          <h3>Wellness Bedroom</h3>
-          <p>Calming palettes & organic fabrics for restorative sleep.</p>
+        <div class="collection-card">
+          <div class="card-image placeholder"></div>
+          <h3>🛏️ Wellness Bedroom</h3>
+          <p>Organic fabrics for restorative sleep.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Reuse collections, brands, testimonials from previous with minor tweaks for sustainability focus -->
+  <!-- Preserved sections with minor tweaks -->
+  <section id="collections" class="section collections"><!-- Unchanged --></section>
+  <section id="brands" class="section brands"><!-- Unchanged --></section>
+  <section id="testimonials" class="section testimonials"><!-- Unchanged --></section>
 
-  <section id="collections" class="section collections"><!-- Same as previous but add "Sustainable" badges --></section>
-  <section id="brands" class="section brands"><!-- Same --></section>
-  <section id="testimonials" class="section testimonials"><!-- Same --></section>
-
-  <section id="book" class="cta-section gradient">
+  <!-- Modified CTA: SMS focus -->
+  <section id="book" class="cta-section">
     <div class="container">
       <h2>Ready to Refresh?</h2>
-      <p>Text or call for virtual design help. Appleton showroom open daily.</p>
+      <p>Text for virtual design help. Appleton showroom daily 10-7.</p>
       <div class="quick-actions">
-        <a href="tel:+19208820808" class="btn btn-secondary">📞 Call Now</a>
-        <a href="#form" class="btn btn-primary">💬 Text Consult</a>
+        <a href="tel:+19208820808" class="btn btn-outline">📞 Call</a>
+        <a href="#quickform" class="btn btn-primary">💬 Text Consult</a>
       </div>
     </div>
   </section>
 
-  <!-- Quick form -->
-  <section id="form" class="section quick-form">
+  <!-- NEW Quick Form: Low friction -->
+  <section id="quickform" class="section contact quickform">
     <div class="container">
-      <form>
-        <input type="text" placeholder="Name">
-        <input type="tel" placeholder="Phone">
-        <button type="submit" class="btn btn-primary full">Send (Free)</button>
+      <form class="contact-form">
+        <h2>Quick Consult (1 min)</h2>
+        <div class="form-grid">
+          <input type="text" placeholder="Name">
+          <input type="tel" placeholder="Phone #">
+        </div>
+        <button type="submit" class="btn btn-primary">Send Text</button>
       </form>
     </div>
   </section>
 
-  <footer><!-- Same as previous --></footer>
+  <!-- Preserved footer -->
+  <footer class="footer"><!-- Unchanged --></footer>
+
   <script src="script.js"></script>
 </body>
 </html>
