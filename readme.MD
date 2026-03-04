@@ -1,4 +1,4 @@
-This repositry contains 2 landing pages I've built for https://valerifurniture.com/.
+This repository contains 2 landing pages I've built for https://valerifurniture.com/.
 
 Each landing page is optimised for a certain age demographic. Given that the primary audience is a top 40% earning home-owner, between the ages of 25 and 65, I chose to split the overall age demographic into two age groups: 25-45 and 45-65.
 
