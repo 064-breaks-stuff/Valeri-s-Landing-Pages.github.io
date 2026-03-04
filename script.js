@@ -16,7 +16,7 @@ function selectAge(pageNum) {
   localStorage.setItem('valeri_segment', segment);
   
   // Manual redirect ONLY on button click
-  const targetUrl = segment === 'modern' ? 'modern-professional/' : 'established-homeowner/';
+  const targetUrl = segment === 'modern' ? 'landing1/' : 'landing2/';
   window.location.href = targetUrl;
 }
 
@@ -37,7 +37,7 @@ document.querySelectorAll('.card').forEach(card => {
     
     // Store preference + redirect
     localStorage.setItem('valeri_segment', segment);
-    const targetPath = segment === 'modern' ? 'modern-professional/' : 'established-homeowner/';
+    const targetPath = segment === 'modern' ? 'landing1/' : 'landing2/';
     window.location.href = targetPath;
   });
 });
