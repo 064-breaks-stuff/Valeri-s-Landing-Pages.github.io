@@ -1,4 +1,4 @@
-// Smooth scroll - mobile-offset aware
+// Smooth scroll — header-offset aware
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ if (quickForm) {
     setTimeout(() => {
       btn.textContent = '✅ Request Received!';
       alert(
-        `✅ Thanks, ${name}!\n\nValeri Furniture will call ${phone} within 2 hours.\n\n📍 5421 N Richmond St, Appleton, WI\n🕒 Mon-Sat 10AM-7PM\n📞 (920) 882-0808`
+        `✅ Thanks, ${name}!\n\nValeri Furniture will call ${phone} within 2 hours.\n\n📍 5421 N Richmond St, Appleton, WI\n🕒 Mon–Sat 10AM–7PM\n📞 (920) 882-0808`
       );
       this.reset();
       setTimeout(() => {
@@ -45,30 +45,33 @@ if (quickForm) {
   });
 }
 
-// Testimonial slider - auto-scroll with pause on hover
+// Testimonial slider — FIX: loops cleanly, pauses on hover
 const slider = document.querySelector('.testimonial-slider');
 if (slider) {
   let paused = false;
   slider.addEventListener('mouseenter', () => paused = true);
   slider.addEventListener('mouseleave', () => paused = false);
-  slider.addEventListener('touchstart', () => paused = true);
+  slider.addEventListener('touchstart', () => paused = true, { passive: true });
+  slider.addEventListener('touchend', () => paused = false, { passive: true });
 
   setInterval(() => {
     if (paused) return;
-    const maxScroll = slider.scrollWidth - slider.clientWidth;
-    if (slider.scrollLeft >= maxScroll - 10) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      slider.scrollBy({ left: 400, behavior: 'smooth' });
-    }
+    const atEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    slider.scrollTo({
+      left: atEnd ? 0 : slider.scrollLeft + 420,
+      behavior: 'smooth'
+    });
   }, 5000);
 }
 
-// Phone tracking
+// Phone click tracking
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => {
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'phone_call', { event_category: 'conversion', event_label: 'lp1_direct_call' });
+      gtag('event', 'phone_call', {
+        event_category: 'conversion',
+        event_label: 'lp1_direct_call'
+      });
     }
   });
 });
