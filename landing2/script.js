@@ -11,7 +11,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Phone tracking — highest value conversion
+// Phone tracking — highest value conversion event
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => {
     if (typeof gtag !== 'undefined') {
@@ -30,11 +30,11 @@ if (visitForm) {
   visitForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const name    = this.querySelector('#name')?.value || 'valued customer';
-    const phone   = this.querySelector('#phone')?.value || '';
+    const name     = this.querySelector('#name')?.value     || 'valued customer';
+    const phone    = this.querySelector('#phone')?.value    || '';
     const interest = this.querySelector('#interest')?.value || '';
-    const timing  = this.querySelector('#timing')?.value || 'soon';
-    const btn     = this.querySelector('button[type="submit"]');
+    const timing   = this.querySelector('#timing')?.value   || '';
+    const btn      = this.querySelector('button[type="submit"]');
     const original = btn.textContent;
 
     btn.textContent = 'Sending your request…';
@@ -62,21 +62,21 @@ if (visitForm) {
   });
 }
 
-// Testimonial auto-scroll — slow pace suits older readers
+// Testimonial slider — slow pace, clean loop, pauses on hover & touch
 const slider = document.querySelector('.testimonial-slider');
 if (slider) {
   let paused = false;
   slider.addEventListener('mouseenter', () => paused = true);
   slider.addEventListener('mouseleave', () => paused = false);
-  slider.addEventListener('touchstart', () => paused = true, { passive: true });
+  slider.addEventListener('touchstart',  () => paused = true,  { passive: true });
+  slider.addEventListener('touchend',    () => paused = false, { passive: true });
 
   setInterval(() => {
     if (paused) return;
     const atEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
-    if (atEnd) {
-      slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      slider.scrollBy({ left: 440, behavior: 'smooth' });
-    }
-  }, 7500);
+    slider.scrollTo({
+      left: atEnd ? 0 : slider.scrollLeft + 440,
+      behavior: 'smooth'
+    });
+  }, 7500);   // slower pace — respects deliberate 45+ reader
 }
