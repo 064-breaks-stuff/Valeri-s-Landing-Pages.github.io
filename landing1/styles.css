@@ -528,7 +528,6 @@ input:focus {
   .hero { padding: 3.5rem 0 3rem; }
   .hero h1 { font-size: 2.8rem; }
   .section { padding: 3.5rem 0; }
-  .testimonial { flex: 0 0 300px; }
   .grid-3 { grid-template-columns: 1fr; }
   .trust-grid { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
