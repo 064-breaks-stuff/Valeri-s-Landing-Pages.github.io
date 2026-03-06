@@ -48,9 +48,9 @@ if (visitForm) {
 
 // ---- Testimonial slider: one card at a time ----
 (function () {
-  const slider  = document.getElementById('lp2Slider');
-  const btnPrev = document.getElementById('lp2Prev');
-  const btnNext = document.getElementById('lp2Next');
+  const slider  = document.getElementById('lp1Slider');
+  const btnPrev = document.getElementById('lp1Prev');
+  const btnNext = document.getElementById('lp1Next');
   if (!slider || !btnPrev || !btnNext) return;
 
   const cards = Array.from(slider.querySelectorAll('.testimonial'));
