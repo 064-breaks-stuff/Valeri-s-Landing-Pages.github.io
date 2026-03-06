@@ -1,7 +1,7 @@
 /* ============================================
    LP2: Established Homeowner (45+)
    Design: Classic serif, warm, high-readability
-   Focus: Craftsmanship, heritage, heirloom
+   Psychology: Craftsmanship, heritage, heirloom
    ============================================ */
 
 :root {
@@ -81,7 +81,7 @@ body {
   background: var(--primary);
   color: white;
   padding: 0.7rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 4px;           /* formal, not pill */
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1rem;
   font-weight: 500;
@@ -113,13 +113,13 @@ body {
 }
 .bar-divider { opacity: 0.4; }
 
-/* ---- Buttons ---- */
+/* ---- Buttons — border-radius: 4px throughout (formal) ---- */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.9rem 1.9rem;
-  border-radius: 4px;
+  border-radius: 4px;           /* intentionally sharp — formal */
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 1.05rem;
   font-weight: 500;
@@ -140,7 +140,7 @@ body {
   box-shadow: 0 14px 32px rgba(123,58,16,0.34);
 }
 .btn-large { padding: 1.1rem 2.4rem; font-size: 1.1rem; }
-.btn-full { width: 100%; }
+.btn-full  { width: 100%; }
 .btn-outline-dark {
   background: transparent;
   color: var(--primary);
@@ -209,9 +209,7 @@ body {
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
 }
-.proof-item {
-  text-align: center;
-}
+.proof-item { text-align: center; }
 .proof-item strong {
   display: block;
   font-family: 'Playfair Display', Georgia, serif;
@@ -227,6 +225,7 @@ body {
   width: 1px;
   height: 40px;
   background: var(--warm-border);
+  flex-shrink: 0;
 }
 .hero-actions {
   display: flex;
@@ -244,9 +243,7 @@ body {
   color: var(--text-secondary);
   display: inline-block;
 }
-.hero-image {
-  position: relative;
-}
+.hero-image { position: relative; }
 .hero-placeholder {
   width: 100%;
   aspect-ratio: 4/5;
@@ -286,7 +283,7 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* ---- Section Labels ---- */
+/* ---- Section Labels & Titles ---- */
 .section-label {
   font-size: 0.82rem;
   letter-spacing: 0.16em;
@@ -315,7 +312,7 @@ body {
   line-height: 1.8;
 }
 
-/* ---- Sections ---- */
+/* ---- Section spacing ---- */
 .section { padding: 5.5rem 0; }
 .grid-2 {
   display: grid;
@@ -343,8 +340,6 @@ body {
   margin-bottom: 1.25rem;
   font-size: 1.05rem;
 }
-
-/* Spec table */
 .spec-table {
   width: 100%;
   border-collapse: collapse;
@@ -396,9 +391,7 @@ body {
   box-shadow: var(--shadow-md);
   border-color: var(--secondary);
 }
-.collection-card--accent {
-  border-color: var(--gold);
-}
+.collection-card--accent { border-color: var(--gold); }
 .card-image {
   height: 200px;
   background: linear-gradient(135deg, #D2B48C, #C4A882, #A0845C);
@@ -425,8 +418,7 @@ body {
 .card-details li {
   font-size: 0.88rem;
   color: var(--text-muted);
-  padding: 0.2rem 0;
-  padding-left: 1rem;
+  padding: 0.2rem 0 0.2rem 1rem;
   position: relative;
 }
 .card-details li::before {
@@ -436,7 +428,7 @@ body {
   color: var(--gold);
 }
 
-/* ---- Products ---- */
+/* ---- Featured Products ---- */
 .featured-section { background: white; }
 .products-grid {
   display: grid;
@@ -495,10 +487,7 @@ body {
   border-top: 1px solid var(--warm-border);
   border-bottom: 1px solid var(--warm-border);
 }
-.product-specs span {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
+.product-specs span { font-size: 0.82rem; color: var(--text-muted); }
 .product-link {
   font-size: 0.9rem;
   font-weight: 600;
@@ -538,16 +527,8 @@ body {
   color: var(--primary);
   box-shadow: var(--shadow-sm);
 }
-.brands-note {
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-.brands-note a {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-}
+.brands-note { text-align: center; font-size: 0.95rem; color: var(--text-muted); }
+.brands-note a { color: var(--primary); font-weight: 600; text-decoration: none; }
 
 /* ---- Testimonials ---- */
 .testimonials { background: white; }
@@ -592,7 +573,7 @@ body {
   text-align: center;
   padding: 5rem 0;
 }
-.cta-section .eyebrow-light {
+.eyebrow-light {
   display: block;
   font-size: 0.82rem;
   letter-spacing: 0.18em;
@@ -641,16 +622,8 @@ body {
   margin-bottom: 2rem;
 }
 .visit-details { display: flex; flex-direction: column; gap: 1.5rem; }
-.visit-detail {
-  display: flex;
-  gap: 1.1rem;
-  align-items: flex-start;
-}
-.detail-icon {
-  font-size: 1.4rem;
-  line-height: 1;
-  margin-top: 0.1rem;
-}
+.visit-detail { display: flex; gap: 1.1rem; align-items: flex-start; }
+.detail-icon { font-size: 1.4rem; line-height: 1; margin-top: 0.1rem; }
 .visit-detail strong {
   display: block;
   font-size: 0.95rem;
@@ -741,11 +714,7 @@ textarea { resize: vertical; min-height: 110px; }
   color: white;
   margin-bottom: 0.75rem;
 }
-.footer-brand p {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.7;
-}
+.footer-brand p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
 .footer-col h4 {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 1rem;
@@ -775,27 +744,39 @@ textarea { resize: vertical; min-height: 110px; }
     gap: 2.5rem;
   }
   .hero-image { display: none; }
+  .hero-lead { max-width: 100%; }
   .heritage-bar .container { flex-direction: column; gap: 0.25rem; }
   .bar-divider { display: none; }
 }
+
 @media (max-width: 768px) {
   .nav { display: none; }
   .hero { padding: 3.5rem 0 3rem; }
   .section { padding: 3.5rem 0; }
   .grid-3, .products-grid { grid-template-columns: 1fr; }
   .testimonial { flex: 0 0 300px; }
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .proof-divider { display: none; }
-  .hero-proof { gap: 2rem; }
+  .hero-proof {                     /* FIX: spacing after dividers hide */
+    gap: 2rem;
+    justify-content: center;
+  }
+  .proof-item { text-align: center; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
+
+@media (max-width: 680px) {
+  .footer-inner { grid-template-columns: 1fr; }  /* FIX: mid-breakpoint */
+}
+
 @media (max-width: 480px) {
   .container { padding: 0 1rem; }
   .cta-header { display: none; }
   .hero-actions { flex-direction: column; }
-  .footer-inner { grid-template-columns: 1fr; }
   .spec-table { font-size: 0.9rem; }
   .spec-table td, .spec-table th { padding: 0.85rem 0.9rem; }
 }
+
+/* ---- Print ---- */
 @media print {
   body { font-size: 12pt; background: white !important; color: black !important; }
   .header, .cta-section, .nav, .heritage-bar, .hero-offer { display: none !important; }
