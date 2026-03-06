@@ -1,6 +1,7 @@
 /* ============================================
-   LP1: Modern Professional (25-45)
-   Psychology: Minimalist, high-contrast, eco
+   LP1: Modern Professional (25–45)
+   Design: Minimalist, high-contrast, mobile-first
+   Psychology: Eco, speed, low-friction
    ============================================ */
 
 :root {
@@ -100,13 +101,13 @@ body {
   align-items: center;
 }
 .eyebrow {
+  display: block;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--secondary);
   text-transform: uppercase;
   margin-bottom: 1.25rem;
-  display: block;
 }
 .hero h1 {
   font-size: clamp(2.8rem, 5.5vw, 4.5rem);
@@ -194,6 +195,24 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 16px 32px rgba(16,185,129,0.35);
 }
+/* For use on LIGHT backgrounds */
+.btn-outline-dark {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+.btn-outline-dark:hover {
+  background: var(--primary);
+  color: white;
+}
+/* For use on DARK/GREEN backgrounds */
+.btn-outline-light {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.7);
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.1); }
+
 .btn-ghost {
   background: transparent;
   color: var(--text-secondary);
@@ -203,12 +222,6 @@ body {
   border-color: var(--primary);
   color: var(--primary);
 }
-.btn-outline {
-  background: transparent;
-  color: white;
-  border: 2px solid rgba(255,255,255,0.7);
-}
-.btn-outline:hover { background: rgba(255,255,255,0.1); }
 .btn-white {
   background: white;
   color: var(--secondary);
@@ -250,7 +263,7 @@ body {
   line-height: 1.7;
 }
 
-/* ---- Lifestyle Collection Cards ---- */
+/* ---- Collection Cards — LEFT ALIGNED, edge-to-edge image ---- */
 .lifestyle { background: white; }
 .grid-3 {
   display: grid;
@@ -265,6 +278,7 @@ body {
   border: 1px solid rgba(16,185,129,0.08);
   display: flex;
   flex-direction: column;
+  text-align: left;           /* FIX: was center */
 }
 .collection-card:hover {
   transform: translateY(-6px);
@@ -274,18 +288,21 @@ body {
 .card-image {
   height: 180px;
   background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+  flex-shrink: 0;
 }
 .collection-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  padding: 1.25rem 1.25rem 0;
+  margin-bottom: 0.4rem;
+  padding: 1.25rem 1.25rem 0;   /* FIX: padding on text, not card */
+  color: var(--text-primary);
 }
 .collection-card p {
   font-size: 0.92rem;
   color: var(--text-secondary);
-  padding: 0 1.25rem 1.25rem;
+  padding: 0 1.25rem 1.25rem;   /* FIX: padding on text */
   flex: 1;
+  margin: 0;
 }
 .card-tag {
   display: inline-block;
@@ -296,6 +313,7 @@ body {
   padding: 0.2rem 0.65rem;
   border-radius: 50px;
   margin: 0 1.25rem 1rem;
+  align-self: flex-start;
 }
 
 /* ---- Products ---- */
@@ -521,14 +539,8 @@ input:focus {
   text-decoration: none;
 }
 .footer a:hover { color: white; }
-.footer-links {
-  display: flex;
-  gap: 2rem;
-}
-.footer-copy {
-  opacity: 0.5;
-  font-size: 0.8rem;
-}
+.footer-links { display: flex; gap: 2rem; }
+.footer-copy { opacity: 0.5; font-size: 0.8rem; }
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
@@ -537,6 +549,7 @@ input:focus {
     gap: 2.5rem;
   }
   .hero-image { display: none; }
+  .hero-content { max-width: 100%; }   /* FIX: release full width */
   .trust-grid { justify-content: center; gap: 1.5rem; }
 }
 
@@ -547,13 +560,13 @@ input:focus {
   .section { padding: 3.5rem 0; }
   .testimonial { flex: 0 0 300px; }
   .grid-3 { grid-template-columns: 1fr; }
+  .trust-grid { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
 @media (max-width: 480px) {
   .container { padding: 0 1rem; }
   .cta-header { display: none; }
   .hero-actions { flex-direction: column; }
-  .trust-grid { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
 /* ---- Print ---- */
