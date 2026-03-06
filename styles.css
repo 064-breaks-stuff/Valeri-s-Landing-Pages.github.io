@@ -60,23 +60,29 @@ body {
   grid-template-columns: 1fr 1fr; 
   gap: 3rem; 
   margin-bottom: 4rem; 
+  align-items: start;       /* FIX: cards don't stretch each other */
 }
 .card { 
-  display: block; 
+  display: flex;            /* FIX: flexbox column so content fills */
+  flex-direction: column;
   text-decoration: none; 
   border-radius: 20px; 
-  overflow: hidden; 
+  overflow: visible;        /* FIX: was 'hidden', was clipping content */
   box-shadow: 0 25px 50px rgba(0,0,0,0.1); 
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1); 
-  min-height: 360px;        
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  background: white;        /* FIX: needs bg so shadow looks right without overflow:hidden */
 }
 .card:hover { 
   transform: translateY(-12px); 
   box-shadow: 0 40px 80px rgba(0,0,0,0.15); 
 }
+
+/* Keep rounded corners on visual separately */
 .card-visual { 
-  height: 180px;           
-  overflow: hidden; 
+  height: 180px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;  /* FIX: top corners rounded here instead */
+  flex-shrink: 0;           /* FIX: never compress the image area */
 }
 .visual-placeholder { 
   width: 100%; 
@@ -92,13 +98,21 @@ body {
 .traditional-viz { 
   background: linear-gradient(135deg, #8B4513, #A0522D); 
 }
+
+/* Card content: grows to fit all text */
 .card-content { 
-  padding: 2rem 2rem 2.5rem; 
+  padding: 2rem 2rem 2.5rem;
+  flex: 1;                  /* FIX: take remaining space */
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 20px 20px;  /* FIX: bottom corners rounded here */
+  background: white;
 }
 .card h3 { 
   font-size: 1.6rem; 
   font-weight: 700; 
-  margin-bottom: 0.5rem; 
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
 }
 .age-range { 
   color: #6B7280; 
@@ -109,17 +123,23 @@ body {
 .features { 
   list-style: none; 
   margin-bottom: 1.5rem; 
-  padding: 0; 
+  padding: 0;
+  flex: 1;                  /* FIX: pushes CTA to bottom */
 }
 .features li { 
-  padding: 0.25rem 0; 
-  font-size: 0.95rem; 
+  padding: 0.3rem 0; 
+  font-size: 0.95rem;
+  color: var(--text-dark);
 }
 .cta { 
   font-weight: 600; 
   font-size: 1rem; 
-  opacity: 0.9; 
+  opacity: 0.9;
+  margin-top: auto;         /* FIX: always pins to bottom of card */
+  display: block;
 }
+.card.modern .cta  { color: #059669; }
+.card.traditional .cta { color: #8B4513; }
 
 /* Age selector */
 .age-selector { 
@@ -154,6 +174,10 @@ body {
 .btn-age.traditional { 
   background: #8B4513; 
   color: white; 
+}
+.btn-age:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 /* Stats */
