@@ -1,67 +1,82 @@
-// Phone tracking (enhanced)
+// Smooth scroll — header-offset aware
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const id = this.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if (target) {
+      const offset = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+  });
+});
+
+// Phone tracking — highest value conversion
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => {
-    console.log('Direct showroom call - highest conversion');
     if (typeof gtag !== 'undefined') {
       gtag('event', 'direct_call', {
         event_category: 'high_value',
-        event_label: 'showroom_phone'
+        event_label: 'lp2_showroom_phone',
+        value: 200
       });
     }
   });
 });
 
-// Smooth scroll (unchanged)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+// Showroom request form
+const visitForm = document.querySelector('.contact-form');
+if (visitForm) {
+  visitForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
-  });
-});
 
-// SHOWROOM FORM - Enhanced trust messaging
-const showroomForm = document.querySelector('.contact-form');
-if (showroomForm) {
-  showroomForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    
-    submitBtn.textContent = 'Scheduling...';
-    submitBtn.disabled = true;
-    
+    const name    = this.querySelector('#name')?.value || 'valued customer';
+    const phone   = this.querySelector('#phone')?.value || '';
+    const interest = this.querySelector('#interest')?.value || '';
+    const timing  = this.querySelector('#timing')?.value || 'soon';
+    const btn     = this.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+
+    btn.textContent = 'Sending your request…';
+    btn.disabled = true;
+
     setTimeout(() => {
-      const confirmation = `Your showroom appointment is confirmed!\n\n📍 5421 N Richmond St, Appleton\n🕒 Mon-Sat 10AM-7PM\n📞 Owner will call within 24 hours\n\nThank you for choosing Valeri Furniture`;
-      
-      alert(confirmation);
-      
-      submitBtn.textContent = 'Thank You!';
+      btn.textContent = '✓ Request Received';
+      alert(
+        `Thank you, ${name}.\n\nOne of our team will call ${phone} to confirm your visit${timing ? ' for ' + timing : ''}.\n\n📍 5421 N Richmond St, Appleton, WI\n🕒 Mon–Sat · 10AM–7PM\n📞 (920) 882-0808\n\nWe look forward to welcoming you.`
+      );
+      this.reset();
       setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        this.reset();
-      }, 2000);
-      
-      // Track showroom lead (highest value)
+        btn.textContent = original;
+        btn.disabled = false;
+      }, 2500);
+
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'showroom_lead', {
+        gtag('event', 'showroom_request', {
           event_category: 'conversion',
-          event_label: '45plus_showroom',
-          value: 150
+          event_label: 'lp2_established_homeowner',
+          value: 200
         });
       }
     }, 1800);
   });
 }
 
-// Testimonial slider (slower for reading)
-const testimonials = document.querySelector('.testimonial-slider');
-if (testimonials) {
+// Testimonial auto-scroll — slow pace suits older readers
+const slider = document.querySelector('.testimonial-slider');
+if (slider) {
+  let paused = false;
+  slider.addEventListener('mouseenter', () => paused = true);
+  slider.addEventListener('mouseleave', () => paused = false);
+  slider.addEventListener('touchstart', () => paused = true, { passive: true });
+
   setInterval(() => {
-    testimonials.scrollBy({ left: 450, behavior: 'smooth' });
-  }, 7000); // Slower pace
+    if (paused) return;
+    const atEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    if (atEnd) {
+      slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      slider.scrollBy({ left: 440, behavior: 'smooth' });
+    }
+  }, 7500);
 }
