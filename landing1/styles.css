@@ -149,7 +149,7 @@ body {
   margin-bottom: 1.5rem;
 }
 .hero-offer {
-  background: var(--primary);
+  background: var(--neutral-900);
   color: white;
   padding: 0.9rem 1.25rem;
   border-radius: 12px;
