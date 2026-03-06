@@ -37,6 +37,16 @@ body {
   padding: 0 1.5rem;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* Optional: Add width or max-width for responsiveness */
+  max-width: 100%;
+  width: 50%;
+}
+
+
 /* ---- Header ---- */
 .header {
   position: sticky;
