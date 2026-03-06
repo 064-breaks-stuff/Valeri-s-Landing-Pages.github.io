@@ -45,22 +45,45 @@ if (quickForm) {
   });
 }
 
-// Testimonial slider — FIX: loops cleanly, pauses on hover
-const slider = document.querySelector('.testimonial-slider');
-if (slider) {
-  let paused = false;
-  slider.addEventListener('mouseenter', () => paused = true);
-  slider.addEventListener('mouseleave', () => paused = false);
-  slider.addEventListener('touchstart', () => paused = true, { passive: true });
-  slider.addEventListener('touchend', () => paused = false, { passive: true });
+// LP1 — Testimonial slider with arrow buttons
+const lp1Slider = document.getElementById('lp1Slider');
+const lp1Prev   = document.getElementById('lp1Prev');
+const lp1Next   = document.getElementById('lp1Next');
 
+if (lp1Slider && lp1Prev && lp1Next) {
+  const STEP = 420; // px per scroll — matches card width + gap
+  let paused = false;
+
+  // Arrow clicks
+  lp1Prev.addEventListener('click', () => {
+    lp1Slider.scrollBy({ left: -STEP, behavior: 'smooth' });
+  });
+  lp1Next.addEventListener('click', () => {
+    lp1Slider.scrollBy({ left: STEP, behavior: 'smooth' });
+  });
+
+  // Pause auto-scroll on interaction
+  lp1Slider.addEventListener('mouseenter', () => paused = true);
+  lp1Slider.addEventListener('mouseleave', () => paused = false);
+  lp1Slider.addEventListener('touchstart',  () => paused = true,  { passive: true });
+  lp1Slider.addEventListener('touchend',    () => paused = false, { passive: true });
+  lp1Prev.addEventListener('click', () => { paused = true; setTimeout(() => paused = false, 6000); });
+  lp1Next.addEventListener('click', () => { paused = true; setTimeout(() => paused = false, 6000); });
+
+  // Update arrow disabled state
+  function updateLp1Arrows() {
+    lp1Prev.disabled = lp1Slider.scrollLeft <= 5;
+    lp1Next.disabled = lp1Slider.scrollLeft >= lp1Slider.scrollWidth - lp1Slider.clientWidth - 5;
+  }
+  lp1Slider.addEventListener('scroll', updateLp1Arrows);
+  updateLp1Arrows(); // set initial state
+
+  // Auto-scroll with clean loop
   setInterval(() => {
     if (paused) return;
-    const atEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
-    slider.scrollTo({
-      left: atEnd ? 0 : slider.scrollLeft + 420,
-      behavior: 'smooth'
-    });
+    const atEnd = lp1Slider.scrollLeft >= lp1Slider.scrollWidth - lp1Slider.clientWidth - 10;
+    lp1Slider.scrollTo({ left: atEnd ? 0 : lp1Slider.scrollLeft + STEP, behavior: 'smooth' });
+    updateLp1Arrows();
   }, 5000);
 }
 

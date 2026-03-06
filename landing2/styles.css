@@ -784,3 +784,51 @@ textarea { resize: vertical; min-height: 110px; }
   .spec-table th, .spec-table td { border: 1px solid black !important; background: white !important; }
   a[href^="tel:"]::after { content: " (" attr(href) ")"; font-weight: bold; }
 }
+
+/* ---- Testimonial Slider Arrows ---- */
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.slider-arrow {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;            /* sharp corners — matches LP2 formal style */
+  border: 1.5px solid var(--primary);
+  background: white;
+  color: var(--primary);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 2;
+  font-family: 'EB Garamond', Georgia, serif;
+  line-height: 1;
+}
+
+.slider-arrow:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(123,58,16,0.2);
+}
+
+.slider-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Slider takes remaining space */
+.slider-wrapper .testimonial-slider {
+  flex: 1;
+  min-width: 0;
+}
