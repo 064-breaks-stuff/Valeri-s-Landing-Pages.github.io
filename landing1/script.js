@@ -17,8 +17,8 @@ if (quickForm) {
   quickForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const phone = this.querySelector('input[type="tel"]')?.value || '';
-    const name = this.querySelector('input[type="text"]')?.value || '';
-    const btn = this.querySelector('button[type="submit"]');
+    const name  = this.querySelector('input[type="text"]')?.value || '';
+    const btn   = this.querySelector('button[type="submit"]');
     const original = btn.textContent;
 
     btn.textContent = '📞 Sending...';
@@ -26,75 +26,87 @@ if (quickForm) {
 
     setTimeout(() => {
       btn.textContent = '✅ Request Received!';
-      alert(
-        `✅ Thanks, ${name}!\n\nValeri Furniture will call ${phone} within 2 hours.\n\n📍 5421 N Richmond St, Appleton, WI\n🕒 Mon–Sat 10AM–7PM\n📞 (920) 882-0808`
-      );
+      alert(`✅ Thanks, ${name}!\n\nValeri Furniture will call ${phone} within 2 hours.\n\n📍 5421 N Richmond St, Appleton, WI\n🕒 Mon–Sat 10AM–7PM\n📞 (920) 882-0808`);
       this.reset();
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled = false;
-      }, 2000);
-
+      setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 2000);
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'call_request', {
-          event_category: 'conversion',
-          event_label: 'lp1_modern_professional'
-        });
+        gtag('event', 'call_request', { event_category: 'conversion', event_label: 'lp1_modern_professional' });
       }
     }, 1000);
   });
 }
 
-// LP1 — Testimonial slider with arrow buttons
-const lp1Slider = document.getElementById('lp1Slider');
-const lp1Prev   = document.getElementById('lp1Prev');
-const lp1Next   = document.getElementById('lp1Next');
-
-if (lp1Slider && lp1Prev && lp1Next) {
-  const STEP = 420; // px per scroll — matches card width + gap
-  let paused = false;
-
-  // Arrow clicks
-  lp1Prev.addEventListener('click', () => {
-    lp1Slider.scrollBy({ left: -STEP, behavior: 'smooth' });
-  });
-  lp1Next.addEventListener('click', () => {
-    lp1Slider.scrollBy({ left: STEP, behavior: 'smooth' });
-  });
-
-  // Pause auto-scroll on interaction
-  lp1Slider.addEventListener('mouseenter', () => paused = true);
-  lp1Slider.addEventListener('mouseleave', () => paused = false);
-  lp1Slider.addEventListener('touchstart',  () => paused = true,  { passive: true });
-  lp1Slider.addEventListener('touchend',    () => paused = false, { passive: true });
-  lp1Prev.addEventListener('click', () => { paused = true; setTimeout(() => paused = false, 6000); });
-  lp1Next.addEventListener('click', () => { paused = true; setTimeout(() => paused = false, 6000); });
-
-  // Update arrow disabled state
-  function updateLp1Arrows() {
-    lp1Prev.disabled = lp1Slider.scrollLeft <= 5;
-    lp1Next.disabled = lp1Slider.scrollLeft >= lp1Slider.scrollWidth - lp1Slider.clientWidth - 5;
-  }
-  lp1Slider.addEventListener('scroll', updateLp1Arrows);
-  updateLp1Arrows(); // set initial state
-
-  // Auto-scroll with clean loop
-  setInterval(() => {
-    if (paused) return;
-    const atEnd = lp1Slider.scrollLeft >= lp1Slider.scrollWidth - lp1Slider.clientWidth - 10;
-    lp1Slider.scrollTo({ left: atEnd ? 0 : lp1Slider.scrollLeft + STEP, behavior: 'smooth' });
-    updateLp1Arrows();
-  }, 5000);
-}
-
-// Phone click tracking
+// Phone tracking
 document.querySelectorAll('a[href^="tel:"]').forEach(link => {
   link.addEventListener('click', () => {
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'phone_call', {
-        event_category: 'conversion',
-        event_label: 'lp1_direct_call'
-      });
+      gtag('event', 'phone_call', { event_category: 'conversion', event_label: 'lp1_direct_call' });
     }
   });
 });
+
+// ---- Testimonial slider: one card at a time ----
+(function () {
+  const slider  = document.getElementById('lp1Slider');
+  const btnPrev = document.getElementById('lp1Prev');
+  const btnNext = document.getElementById('lp1Next');
+  if (!slider || !btnPrev || !btnNext) return;
+
+  const cards = Array.from(slider.querySelectorAll('.testimonial'));
+  let current = 0;
+  let autoTimer = null;
+
+  // Build dot indicators
+  const dotsContainer = document.createElement('div');
+  dotsContainer.className = 'slider-dots';
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  });
+  slider.parentElement.insertAdjacentElement('afterend', dotsContainer);
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, cards.length - 1));
+    const cardWidth = slider.offsetWidth;
+    slider.scrollTo({ left: cardWidth * current, behavior: 'smooth' });
+    updateUI();
+  }
+
+  function updateUI() {
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === cards.length - 1;
+    dotsContainer.querySelectorAll('.slider-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+    });
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(() => {
+      goTo(current < cards.length - 1 ? current + 1 : 0);
+    }, 5000);
+  }
+
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  function restartAuto() {
+    stopAuto();
+    setTimeout(startAuto, 8000); // restart after 8s of no interaction
+  }
+
+  btnPrev.addEventListener('click', () => { goTo(current - 1); restartAuto(); });
+  btnNext.addEventListener('click', () => { goTo(current + 1); restartAuto(); });
+
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+  slider.addEventListener('touchstart', stopAuto,  { passive: true });
+  slider.addEventListener('touchend',   startAuto, { passive: true });
+
+  updateUI();
+  startAuto();
+})();
